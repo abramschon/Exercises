@@ -1,4 +1,4 @@
-# Implementing a multi-class perceptron to separate simulated data
+# Implementing a perceptron to separate simulated data
 
 import numpy as np
 import matplotlib.pyplot as plt
