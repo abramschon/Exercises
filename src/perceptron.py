@@ -5,18 +5,34 @@ import matplotlib.pyplot as plt
 
 def main():
     # Create data
-    shape=(5,2)
+    shape=(50,2)
     X,Y = create_data(shape)
-    plot_2D_data(X,Y)
 
     # Create Perceptron
     percy = Percepton(shape[1])
-    print(percy.W)
 
-    predictions = percy.predict(X)
-    print(predictions)
+    Y_pred = percy.predict(X) #initial predictions
+    plot_2D_data(X,Y,percy.W)
 
-    # Update weights
+    # Update weights until accuracy is 1.
+    for i in range(10): #arbitrary number of iterations
+        acc = accuracy(Y, Y_pred)
+        print(f"Accuracy: {acc}")
+        if acc == 1:
+            break
+        #pick first missed predictions and update
+        miss = np.where(Y!=Y_pred)[0][0]
+        x = X[miss,:]
+        y = Y[miss,:]
+        print(miss, x.shape, y.shape)
+        percy.update(x[:,None], y)
+        
+        plot_2D_data(X,Y,percy.W) # show result of updating vector
+
+        Y_pred = percy.predict(X) # make new predictions
+
+
+    
 
 class Percepton:
     def __init__(self, features):
@@ -37,15 +53,18 @@ class Percepton:
 
         return Y_pred
 
-    def update(self, x, y, y_pred):
+    def update(self, x, y):
         """
-        Updates the weights based on whether prediction is correct
+        Updates the weights based to better classify misclassified prediction
         Expects a column vector for observation x
         """
-        adjust = [-1,1][y==y_pred]
-        self.W = self.W + adjust*x
+        self.W = self.W + y*x
 
-
+def accuracy(Y, Y_pred):
+    """
+    Returns number of correctly classified observations divided by total no. observations 
+    """
+    return np.sum(Y==Y_pred) / Y.shape[0]
 
 def create_data(shape=(50,2), resp_func=lambda X: np.sign(np.sum(X, axis=1, keepdims=True))):
     """
@@ -59,12 +78,16 @@ def create_data(shape=(50,2), resp_func=lambda X: np.sign(np.sum(X, axis=1, keep
     Y = resp_func(X)
     return X,Y
 
-def plot_2D_data(X,Y):
+def plot_2D_data(X,Y, W=None):
     """
     For 2D data, plot the data indicating which class it falls into
     """
+    plt.xlim((-1,1))
+    plt.ylim((-1,1))
     plt.scatter(X[:,0], X[:,1], c=Y.flatten(), cmap=plt.cm.Set1)
-    print(Y.astype(int).flatten)
+    if W is not None:
+        norm_W = W.flatten()/np.linalg.norm(W)
+        plt.plot( [0,norm_W[0]],[0,norm_W[1]], "-") #plot normalise
     plt.show()
 
 
