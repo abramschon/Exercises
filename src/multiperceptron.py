@@ -1,18 +1,23 @@
 # Implementing a multi-class perceptron to separate simulated data
 
-from perceptron import create_data
+from perceptron import create_data, accuracy
 import numpy as np
 import matplotlib.pyplot as plt
 
 def main():
-    # # Create data
-    # shape=(50,2)
-    # X,Y = create_data(shape)
+    # Create data
+    shape=(100,2)
+    X,Y = create_data(shape) # we will redefine the labels in a second
+    # define a perceptron using "model" weight vectors
+    ideal_perc = MultiClassPercepton(shape[1],4,np.array([[ 1, 1,-1,-1],
+                                                          [ 1,-1,-1, 1]]))
+    Y = ideal_perc.predict(X)
+    plot_2D_data(X,Y)
 
-    # # Create Perceptron
-    # percy = Percepton(shape[1])
+    # Create Perceptron with randomised weights
+    percy = Percepton(shape[1], 4)
 
-    # Y_pred = percy.predict(X) #initial predictions
+    Y_pred = percy.predict(X) #initial predictions
     # plot_2D_data(X,Y,percy.W)
 
     # # Update weights until accuracy is 1.
@@ -36,7 +41,7 @@ def main():
     
 
 class MultiClassPercepton:
-    def __init__(self, features, classes):
+    def __init__(self, features, classes, W=None):
         """
         A perceptron that outputs the label of the class of each observation
         
@@ -44,19 +49,22 @@ class MultiClassPercepton:
             features: int - how many features each observation has, 
                 used to initialise weights
             classes: int - how many classes the data has
+            W: np array with dimensions (features, classes)
         """
-        self.W = np.random.normal(size=(features, classes))
+        if W is None:
+            self.W = np.random.normal(size=(features, classes))
+        else:
+            self.W = W
 
     def predict(self, X):
         """
-        Assumes X has rows for observations and cols for features
+        Takes the dot product of each observation with each weight vector and returns the label of the weight vector associate with the largest product
         """
-        products = np.sign(X @ self.W)
-        Y_pred = np.argmax(products, axis=0) #check axis 0 works
-
+        products = X @ self.W
+        Y_pred = np.argmax(products, axis=1) 
         return Y_pred
 
-    # adjust so that we subtract feature from incorrect vector and add feature to correct vector
+    #TO DO
     def update(self, x, y):
         """
         Updates the weights based to better classify misclassified prediction
@@ -64,15 +72,8 @@ class MultiClassPercepton:
         """
         self.W = self.W + y*x
 
-#check this works
-def accuracy(Y, Y_pred):
-    """
-    Returns number of correctly classified observations divided by total no. observations 
-    """
-    return np.sum(Y==Y_pred) / Y.shape[0]
 
-
-# modify this to plot multiple weight vectors
+# TO DO modify this to plot multiple weight vectors
 def plot_2D_data(X,Y, W=None):
     """
     For 2D data, plot the data indicating which class it falls into
