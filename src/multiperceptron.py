@@ -11,31 +11,32 @@ def main():
     # define a perceptron using "model" weight vectors
     ideal_perc = MultiClassPercepton(shape[1],4,np.array([[ 1, 1,-1,-1],
                                                           [ 1,-1,-1, 1]]))
-    Y = ideal_perc.predict(X)
-    plot_2D_data(X,Y)
+    Y = ideal_perc.predict(X) #use this to label simulated data
 
     # Create Perceptron with randomised weights
-    percy = Percepton(shape[1], 4)
+    percy = MultiClassPercepton(shape[1], 4)
 
     Y_pred = percy.predict(X) #initial predictions
-    # plot_2D_data(X,Y,percy.W)
+    plot_2D_data(X,Y,percy.W)
 
-    # # Update weights until accuracy is 1.
-    # for i in range(10): #arbitrary number of iterations
-    #     acc = accuracy(Y, Y_pred)
-    #     print(f"Accuracy: {acc}")
-    #     if acc == 1:
-    #         break
-    #     #pick first missed predictions and update
-    #     miss = np.where(Y!=Y_pred)[0][0]
-    #     x = X[miss,:]
-    #     y = Y[miss,:]
-    #     print(miss, x.shape, y.shape)
-    #     percy.update(x[:,None], y)
+    # Update weights until accuracy is 1.
+    for i in range(50): #arbitrary number of iterations
+        acc = accuracy(Y, Y_pred)
+        print(f"Iteration: {i}, Accuracy: {acc}")
+        if acc == 1:
+            break
+        #pick first missed predictions and update
+        miss = np.where(Y!=Y_pred)[0][0] #np.where returns a tuple
+        x = X[miss,:]
+        y = Y[miss]
+        y_pred = Y_pred[miss]
+
+        # update weights and plot updated vectors
+        percy.update(x, y, y_pred)
         
-    #     plot_2D_data(X,Y,percy.W) # show result of updating vector
+        plot_2D_data(X,Y,percy.W) # show result of updating vector
 
-    #     Y_pred = percy.predict(X) # make new predictions
+        Y_pred = percy.predict(X) # make new predictions
 
 
     
@@ -65,15 +66,14 @@ class MultiClassPercepton:
         return Y_pred
 
     #TO DO
-    def update(self, x, y):
+    def update(self, x, y, y_pred):
         """
         Updates the weights based to better classify misclassified prediction
-        Expects a column vector for observation x
         """
-        self.W = self.W + y*x
+        self.W[:,y] += x #make the vector that should "represent" x more in the direction of x
+        self.W[:,y_pred] -= x #make the vector that incorrectly "represented x" less in that direction 
 
 
-# TO DO modify this to plot multiple weight vectors
 def plot_2D_data(X,Y, W=None):
     """
     For 2D data, plot the data indicating which class it falls into
@@ -82,8 +82,9 @@ def plot_2D_data(X,Y, W=None):
     plt.ylim((-1,1))
     plt.scatter(X[:,0], X[:,1], c=Y.flatten(), cmap=plt.cm.Set1)
     if W is not None:
-        norm_W = W.flatten()/np.linalg.norm(W)
-        plt.plot( [0,norm_W[0]],[0,norm_W[1]], "-") #plot normalise
+        for vec in W.T:
+            norm_vec = vec.flatten()/np.linalg.norm(vec)
+            plt.plot( [0,norm_vec[0]],[0,norm_vec[1]], "-") #plot normalised vector
     plt.show()
 
 
