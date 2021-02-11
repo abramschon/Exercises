@@ -1,0 +1,10 @@
+What to do after training a model
+https://medium.com/kaggle-blog/i-trained-a-model-what-is-next-d1ba1c560e26 
+
+IDEs/Text Editors
+Vim:
+https://www.youtube.com/watch?v=JFr28K65-5E
+Atom?
+https://atom.io
+
+Hitchhiker's Guide to Python: https://docs.python-guide.org
