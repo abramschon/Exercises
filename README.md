@@ -1,13 +1,15 @@
-# ML Basics
-## Implementing Some Basic Machine Learning Methods
+# Coding exercises
 
-For sake of practice, we implement the following ML methods:
+Here is a random assortment of code, written for the sake of self improvement
 
-- Perceptron (binary and multi-class)
-- Naïve Bayes
-- Logistic Regression (binary and multi-class)
-- Multilayer Perceptron / Feed Forward Neural Network
+0_Perceptrons
 
-... More
+1_Conv
 
-We largely try implement these from scratch with a bit of help from `Numpy`. Where possible, we try visualise aspects of the models.
+2_Issassin
+
+3_BridgeProb
+
+4_LastWednesday
+
+5_Graph
