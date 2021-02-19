@@ -86,6 +86,7 @@ def plot_2D_data(X,Y, W=None):
     plt.ylim((-1,1))
     plt.scatter(X[:,0], X[:,1], c=Y.flatten(), cmap=plt.cm.Set1)
     if W is not None:
+        # show vector corresponding to the weights
         norm_W = W.flatten()/np.linalg.norm(W)
         plt.plot( [0,norm_W[0]],[0,norm_W[1]], "-") #plot normalise
     plt.show()
