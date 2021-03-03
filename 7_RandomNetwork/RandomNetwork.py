@@ -14,8 +14,9 @@ def main():
     x_axis = np.column_stack((np.arange(n),np.zeros(n))) 
     y_axis = np.column_stack((np.zeros(n),np.arange(n))) 
     input = np.concatenate((x_axis,y_axis),axis=0)
+    
+    # visualise how each layer transforms data
     plot_2D(input)
-
     for image in rand_net.transform(input):
         plot_2D(image)
 
