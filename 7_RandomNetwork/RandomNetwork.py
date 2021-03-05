@@ -4,21 +4,32 @@ import matplotlib.pyplot as plt
 
 def main():
     # initialise random network
-    rand_net = RandomNet(non_lin="tanh")
+    rand_net = RandomNet(
+        w_sd=0.2, #weight standard deviation
+        b_sd=0, #bias standard deviation
+        shapes=[2,500,500,500,500,500,2], #no. units in each layer
+        non_lin="sigmoid" #type of non-linearity applied to each layer         
+    )
 
     # examine network weights
     rand_net.print_weights()
     
-    # define some arbitrary input data, say a straight line along the x and another along the y axis
+    # define some arbitrary input data, a grid
+    m = 10
     n = 10
-    x_axis = np.column_stack((np.arange(n),np.zeros(n))) 
-    y_axis = np.column_stack((np.zeros(n),np.arange(n))) 
-    input = np.concatenate((x_axis,y_axis),axis=0)
+    input = np.array([[0,0]])
+    for i in range(m):
+        vert = np.column_stack((i*np.ones(n),np.arange(n))) #create vertical lines at different heights
+        input = np.concatenate((input,vert),axis=0)
     
     # visualise how each layer transforms data
     plot_2D(input)
-    for image in rand_net.transform(input):
-        plot_2D(image)
+    outputs = rand_net.transform(input)
+
+    plot_2D(outputs[-1])
+    
+
+    
 
 
 def plot_2D(data):
