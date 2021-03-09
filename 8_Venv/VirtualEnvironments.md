@@ -4,6 +4,7 @@ Useful links:
 - [Installing Tensorflow (TF) in a virtual environment](https://www.tensorflow.org/install/pip)
 - [An introduction to Python virtual environments](https://docs.python.org/3/tutorial/venv.html)
 - [How to use git and virtual environemnts](https://medium.com/wealthy-bytes/the-easiest-way-to-use-a-python-virtual-environment-with-git-401e07c39cde)
+- [Managing different Python versions and dependencies](https://www.youtube.com/watch?v=Jfc5aCCQlg0)
 
 To start a Python virtual environment, type: 
 >`python3 -m venv .venv` 
