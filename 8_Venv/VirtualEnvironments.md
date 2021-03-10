@@ -11,6 +11,7 @@ Useful links:
 ## Quick start
 Set the desired version, say 3.9.1, of Python for your project with `pyenv` using:
 > `pyenv local 3.9.1`
+
 We might be happy with the current global version, though in any case we may want to document our chosen version for later, perhaps in the README. 
 
 Start a new virtual environment using your chosen version of Python (assumes version > 3.3):
@@ -25,7 +26,7 @@ Ideally, we would like to revisit a coding project later in life and be able to 
 The purpose of this project is to introduce `pyenv` which allows us to create projects with different versions of python, and *virtual environments* which allows us to isolate our project's dependencies. 
 
 ## Pyenv
-`Pyenv` makes it easy to switch between multiple versions of Python and define which version of Python you want to use for different contexts. For instance, you may want a global version of Python, and then a different project specific version of Python. To find out more about `pyenv` and how it works, [see here](https://github.com/pyenv/pyenv) 
+`Pyenv` makes it easy to switch between multiple versions of Python and define which version of Python you want to use for different contexts. For instance, you may want a global version of Python, and then a different project specific version of Python. To find out more about `pyenv` and how it works, [see here](https://github.com/pyenv/pyenv). 
 
 To install a version of Python, say 3.9.1, type:
 > `pyenv install 3.9.1`
