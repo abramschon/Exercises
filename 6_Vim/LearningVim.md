@@ -1,6 +1,9 @@
 # Learning Vim
 
 Taken from this [tutorial](https://www.linux.com/training-tutorials/vim-101-beginners-guide-vim/)
+See also:
+- `vimtutor` (type this into the command line I think)
+- (This course)[https://thoughtbot.com/upcase/vim] 
 
 ## Modes
 
