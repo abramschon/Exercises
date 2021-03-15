@@ -40,8 +40,22 @@ Prefacing any movement with a number will mean that that movement is done that n
 - `u` undo
 - `ctrl+r` redo
 - `d` starts delete operation 
+- `dd` deletes entire line
 - `dw` deletes word
 - `d0` deletes until beginning of line
 - `d$` deletes until end of line
 - `dgg` deletes until beginning of file
 - `dG` deletes until end of file 
+
+## Searching and replacing (while in command mode)
+
+- `/text` search for `text` in document going forward
+- `n` move cursor to next instance of `text` 
+- `N` move cursor to previous instance
+- `?text` search for `text` going backward
+- `:%s/text/replacement text/g` search through entire document for `text` and replace it with `replacement text` 
+- `:%s/text/replacement text/gc` search through document and confirm before replacement
+
+## Copying and pasting
+
+-  
