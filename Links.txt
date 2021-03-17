@@ -8,3 +8,7 @@ Atom?
 https://atom.io
 
 Hitchhiker's Guide to Python: https://docs.python-guide.org
+
+How to customise zsh terminal
+https://www.freecodecamp.org/news/jazz-up-your-zsh-terminal-in-seven-steps-a-visual-guide-e81a8fd59a38/
+

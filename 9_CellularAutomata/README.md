@@ -14,3 +14,15 @@ For instance, the value of pixel `b` would be determined by the values of `w,x,y
 
  Tips can be found [here](http://tuvalu.santafe.edu/~simon/MOOC_problems.pdf) 
 
+## Program
+We need to take in:
+- a rule (which defines how our system evolves), 
+- a set of initial conditions, and 
+- the number of time steps our system evolves for.
+
+We want to then visualise what the evolution looks like as a grid of pixels. 
+
+To find the mapping that a rule defines, convert it to binary. Each of the `2^3=8` configurations are mapped to the corresponding value in the binary representation of the rule. For instance, rule 30 has binary representation `00011110`, thus it defines the following evolution:
+
+    Configuration:  111 110 101 100 011 010 001 000
+    Maps to:         0   0   0   1   1   1   1   0  
