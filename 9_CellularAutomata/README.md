@@ -26,3 +26,5 @@ To find the mapping that a rule defines, convert it to binary. Each of the `2^3=
 
     Configuration:  111 110 101 100 011 010 001 000
     Maps to:         0   0   0   1   1   1   1   0  
+
+As further work, confirm that rule 150 is a coarse graining of rule 105 for certain projections. 
