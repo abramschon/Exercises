@@ -1,4 +1,5 @@
 # Cellular Automata
+*Coded using python 3.9.1*
 
 In the [course](https://www.complexityexplorer.org/courses/67-introduction-to-renormalization) I am doing on renormalization, it mentions cellular automata. A simple type of cellular automata involves rows of pixels, each of which can be on or off (1 or 0). The value of a pixel is determined by the values of the 3 pixels above it:
 
