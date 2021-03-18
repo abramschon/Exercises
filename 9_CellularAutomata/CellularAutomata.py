@@ -3,9 +3,9 @@ import matplotlib.pyplot as plt
 def main():
     rule = 150
     explain_rule(rule)
-    init_row = [0 for i in range(101)]
-    init_row[51] = 1
-    CA = CellularAutomata(rule,init_row,100)
+    init_row = [0 for i in range(1000)]
+    init_row[500] = 1
+    CA = CellularAutomata(rule,init_row,1000)
     visualise_grid(CA.grid)
 
 class CellularAutomata:
@@ -76,7 +76,7 @@ def explain_rule(n):
     print(f"Maps to:         {map[7]}   {map[6]}   {map[5]}   {map[4]}   {map[3]}   {map[2]}   {map[1]}   {map[0]} ")
 
 def visualise_grid(grid):
-    plt.imshow(grid)
+    plt.imshow(grid, cmap="Blues")
     plt.show()
 
 if __name__=="__main__":
